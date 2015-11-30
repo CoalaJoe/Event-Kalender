@@ -1,0 +1,22 @@
+# Learn more about services, parameters and containers at
+# http://symfony.com/doc/current/book/service_container.html
+parameters:
+#    parameter_name: value
+
+services:
+#    service_name:
+#        class: AppBundle\Directory\ClassName
+#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+
+    app.locale_listener:
+        class: AppBundle\EventListener\LocaleListener
+        arguments: ["%kernel.default_locale%"]
+        tags:
+            - { name: kernel.event_subscriber }
+
+    date.overlap.validator:
+            class: AppBundle\Validator\Constraints\HasNoDateOverlapValidator
+            tags:
+                - { name: validator.constraint_validator, alias: date_overlap_validator }
+            calls:
+                - [ setEntityManager, ["@doctrine.orm.entity_manager"]]

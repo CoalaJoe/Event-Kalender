@@ -1,0 +1,45 @@
+{% extends '@App/base.html.twig' %}
+
+{% block body %}
+    <main>
+    <div class="container">
+        <h1>Archiv</h1>
+    </div>
+    <div class="container-fluid">
+        <div class="events">
+            {% for key, event in events %}
+            <div class="col-md-2 col-sm-4 col-xs-6{% if key == 0 %} col-md-offset-1 col-sm-offset-2{% endif %}">
+                <div class="event">
+                    <img src="/uploads/documents/{{ event.image }}" class="event-image" title="{{ event.imageDescription }}"/>
+                    <b>{{ event.genre }}:</b> {{ event.name }}<br/>
+                    <span>{{ event.date|date("F jS Y \\u\\m H:i \\U\\h\\r") }} ({{event.duration}} Minuten)</span><br/>
+                    {% if event.link is defined and event.link is not empty %}
+                    <a href="{{ event.link }}" title="{{ event.linkDescription | default("") }}">{{ event.link }}</a><br/>
+                    {% endif %}
+                    <b>Info:</b> {{ event.description }}<br/>
+                    {% if event.cast and event.cast is not empty %}
+                    <b>Besetzung:</b> {{ event.cast }}<br/>
+                    {% endif %}
+                    <b>Preise:</b>
+                    {% for priceClass in event.priceClasses %}
+                        {{ priceClass }}<br/>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="container text-center">
+        <nav>
+            <ul class="pagination">
+                <li {% if page == 1 %}class="disabled"{% endif %}><a href="{% if page == 1 %}#{% else %}{{ path('archive_route', {"page": page-1}) }}{% endif %}" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+                {% for p in 1..amountOfPages %}
+                <li{% if p == page %} class="active"{% endif %}><a href="{{ path('archive_route', {"page": p}) }}">{{ p }}{% if p == page %} <span class="sr-only">(current)</span>{% endif %}</a></li>
+                {% endfor %}
+                <li {% if page == amountOfPages %}class="disabled"{% endif %}><a href="{% if page == amountOfPages %}#{% else %}{{ path('archive_route', {"page": page+1}) }}{% endif %}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+            </ul>
+        </nav>
+    </div>
+</main>
+{% endblock %}
+

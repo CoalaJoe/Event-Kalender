@@ -1,0 +1,28 @@
+{% extends '@App/base.html.twig' %}
+{% block body %}
+    <main>
+        <div class="container">
+
+            {% if error %}
+                <div class="alert alert-danger alert-dismissable" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                    <span class="sr-only">Error:</span><span> {{ error.messageKey|trans(error.messageData, 'security') }}</span>
+                </div>
+            {% endif %}
+
+            <div class="well col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+                <form action="{{ path('login_check') }}" method="post">
+                    <label for="username">Username:</label>
+                    <input class="form-control" type="text" id="username" name="_username" value="{{ last_username }}" />
+                    <br/>
+                    <label for="password">Password:</label>
+                    <input class="form-control" type="password" id="password" name="_password" />
+                    <br/>
+                    <button type="submit" class="btn btn-block btn-default">Einloggen</button>
+                </form>
+            </div>
+
+        </div>
+    </main>
+{% endblock %}

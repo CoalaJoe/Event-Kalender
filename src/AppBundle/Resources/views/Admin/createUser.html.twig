@@ -1,0 +1,13 @@
+{% extends '@App/base.html.twig' %}
+
+{% block body %}
+<main>
+    <div class="container">
+        <h1>Neuer Benutzer</h1>
+        {{ form(form) }}
+        {% if feedback != '' %}
+            {{ feedback|trans({'%username%': username}) }}
+        {% endif %}
+    </div>
+</main>
+{% endblock %}

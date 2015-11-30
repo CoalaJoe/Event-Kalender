@@ -1,0 +1,14 @@
+{% extends 'AppBundle::base.html.twig' %}
+
+{% block body -%}
+<main>
+    <div class="container">
+
+        <h1>Genre erstellen</h1>
+
+        {{ form(form) }}
+
+        <a href="{{ path('api_genre') }}" class="btn btn-default">Zurück zur Liste</a>
+    </div>
+</main>
+{% endblock %}

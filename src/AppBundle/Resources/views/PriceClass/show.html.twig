@@ -1,0 +1,40 @@
+{% extends '@App/base.html.twig' %}
+
+{% block body -%}
+<main>
+    <div class="container">
+        <h1>Preisgruppe</h1>
+
+        {% if errorMessage is defined %}
+            <div>
+                <div class="alert alert-danger alert-dismissable" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                    <span class="sr-only">Error:</span><span> {{ errorMessage|trans({"%object%": 'Preisgruppe'}) }}</span>
+                </div>
+            </div>
+        {% endif %}
+
+        <table class="record_properties table">
+            <tbody>
+                <tr>
+                    <th>Id</th>
+                    <td>{{ entity.id }}</td>
+                </tr>
+                <tr>
+                    <th>Name</th>
+                    <td>{{ entity.name }}</td>
+                </tr>
+                <tr>
+                    <th>Preis</th>
+                    <td>{{ entity.price }}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <a href="{{ path('api_priceClass') }}" class="btn btn-default">Zurück zur Liste</a>
+        <a href="{{ path('api_priceClass_edit', { 'id': entity.id }) }}" class="btn btn-default">Bearbeiten</a>
+        {{ form(delete_form) }}
+    </div>
+</main>
+{% endblock %}

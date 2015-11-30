@@ -1,0 +1,14 @@
+{% extends '@App/base.html.twig' %}
+
+{% block body -%}
+<main>
+    <div class="container">
+        <h1>Veranstaltung bearbeiten</h1>
+
+        {{ form(edit_form) }}
+
+        <a href="{{ path('api_event') }}" class="btn btn-default">Zurück zur Liste</a>
+        {{ form(delete_form) }}
+    </div>
+</main>
+{% endblock %}

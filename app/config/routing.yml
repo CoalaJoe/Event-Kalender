@@ -1,0 +1,32 @@
+app:
+    resource: "@AppBundle/Controller/"
+    type:     annotation
+
+genre_api:
+    prefix:   /api
+    type: annotation
+    resource: "@AppBundle/Controller/GenreController.php"
+
+priceClass_api:
+    prefix:   /api
+    type: annotation
+    resource: "@AppBundle/Controller/PriceClassController.php"
+
+event_api:
+    prefix:   /api
+    type: annotation
+    resource: "@AppBundle/Controller/EventController.php"
+
+remove_trailing_slash:
+    path:     /{url}
+    defaults: { _controller: AppBundle:Usability:removeTrailingSlash }
+    requirements:
+        url:  .*/$
+    methods: [GET]
+
+missing_handler:
+    path:     /{url}
+    defaults: { _controller: AppBundle:Usability:missingHandler }
+    requirements:
+        url:  .*$
+    methods: [GET]

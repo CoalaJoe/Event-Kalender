@@ -1,0 +1,31 @@
+{% extends '@App/base.html.twig' %}
+
+{% block body %}
+    <main>
+        <div class="container">
+            <h1>Dashboard</h1>
+            <div class="row">
+                <div class="col-md-4 col-sm-4 col-xs-12 card">
+                    <a href="{{ path('api_event') }}">Veranstaltungen</a>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-12 card">
+                    <a href="{{ path('api_genre') }}">Genre</a>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-12 card">
+                    <a href="{{ path('api_priceClass') }}">Preisgruppen</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-sm-4 col-xs-12 card">
+                    <a href="{{ path('new_user_route') }}">Benutzer hinzufügen</a>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-12 card">
+                    <a href="{{ path('password_change_route') }}">Passwort ändern</a>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-12 card">
+                    <a href="{{ path('login_route') }}">Abmelden</a>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}
