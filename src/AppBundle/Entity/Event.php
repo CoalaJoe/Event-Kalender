@@ -304,7 +304,6 @@ class Event
      */
     public function getDate()
     {
-
         return $this->date;
     }
 

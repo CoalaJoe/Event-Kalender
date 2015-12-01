@@ -10,7 +10,6 @@ namespace AppBundle\Validator\Constraints;
 
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Query\ResultSetMapping;
-use Doctrine\ORM\Query\ResultSetMappingBuilder;
 use Symfony\Component\Validator\Constraint;
 use AppBundle\Entity\Event;
 use Symfony\Component\Validator\ConstraintValidator;
@@ -32,7 +31,9 @@ class HasNoDateOverlapValidator extends ConstraintValidator
      */
     public function validate($event, Constraint $constraint)
     {
-        $eventEndDate = $event->getDate()->modify("+".$event->getDuration()." minutes")->format('Y-m-d H:i:s');
+        $eventEndDate = $event->getDate()->format('Y-m-d H:i:s');
+        $eventEndDate = new \DateTime($eventEndDate);
+        $eventEndDate->modify("+".$event->getDuration()." minutes")->format('Y-m-d H:i:s');
 
         // Map result set to my Entity.
         $rsm = new ResultSetMapping();
@@ -49,6 +50,7 @@ class HasNoDateOverlapValidator extends ConstraintValidator
         );
 
         $overlappingEntities = $query->getResult();
+
 
         /** @var $constraint HasNoDateOverlap */
         if ($overlappingEntities){

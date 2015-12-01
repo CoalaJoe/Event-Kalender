@@ -52,7 +52,6 @@ class EventController extends Controller
         $entity = new Event();
         $form   = $this->createCreateForm($entity);
         $form->handleRequest($request);
-
         if ($form->isValid()){
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
@@ -77,9 +76,9 @@ class EventController extends Controller
     private function createCreateForm(Event $entity)
     {
         $form = $this->createForm(new EventType(), $entity, array(
-            'action' => $this->generateUrl('api_event_create'),
-            'method' => 'POST',
-        )
+                'action' => $this->generateUrl('api_event_create'),
+                'method' => 'POST',
+            )
         );
 
         $form->add('submit', 'submit', array('label' => 'Create', 'attr' => array('class' => 'btn btn-default')));
@@ -140,9 +139,9 @@ class EventController extends Controller
     private function createDeleteForm($id)
     {
         return $this->createFormBuilder()->setAction($this->generateUrl('api_event_delete', array('id' => $id))
-            )->setMethod('DELETE')->add('submit', 'submit',
-                array('label' => 'Delete', 'attr' => array('class' => 'btn btn-danger'))
-            )->getForm();
+        )->setMethod('DELETE')->add('submit', 'submit',
+            array('label' => 'Delete', 'attr' => array('class' => 'btn btn-danger'))
+        )->getForm();
     }
 
     /**
@@ -182,9 +181,9 @@ class EventController extends Controller
     private function createEditForm(Event $entity)
     {
         $form = $this->createForm(new EventType(), $entity, array(
-            'action' => $this->generateUrl('api_event_update', array('id' => $entity->getId())),
-            'method' => 'PUT',
-        )
+                'action' => $this->generateUrl('api_event_update', array('id' => $entity->getId())),
+                'method' => 'PUT',
+            )
         );
 
         $form->add('submit', 'submit', array('label' => 'Update', 'attr' => array('class' => 'btn btn-default')));

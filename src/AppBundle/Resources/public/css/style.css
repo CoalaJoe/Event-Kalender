@@ -21,6 +21,11 @@ h1 small{
     color: #bbb;
 }
 
+.required:after {
+    content: "*";
+    color: red;
+}
+
 .sticky{
     position: -webkit-sticky;
     position: -moz-sticky;
@@ -91,4 +96,3 @@ h1 small{
     bottom: 50px;
     z-index: 5;
 }
-

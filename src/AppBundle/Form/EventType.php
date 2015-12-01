@@ -14,7 +14,7 @@ class EventType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name')->add('cast')->add('description')->add('date')->add('duration')->add('file', 'file',
+        $builder->add('name')->add('cast')->add('description')->add('date', 'datetime')->add('duration', 'integer')->add('file', 'file',
             array('label' => 'Image')
         )->add('imageDescription')->add('link')->add('linkDescription')->add('genre')->add('priceClasses');
     }
